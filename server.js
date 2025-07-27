@@ -24,10 +24,22 @@ const subscriptions = [];
 setSubscriptions(subscriptions);
 
 // ✅ Middleware
+const allowedOrigins = [
+  'http://localhost:5173',                        // local dev
+  'https://asha-infracore-frontend.onrender.com'  // your deployed frontend
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // frontend URL
-  credentials: true                // allow cookies
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed for this origin'));
+    }
+  },
+  credentials: true
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 
