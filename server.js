@@ -25,9 +25,11 @@ setSubscriptions(subscriptions);
 
 // ✅ Middleware
 const allowedOrigins = [
-  'http://localhost:5173',                        // local dev
-  'https://asha-infracore-frontend.onrender.com'  // your deployed frontend
+  'http://localhost:5173',
+  'https://asha-infracore-frontend.onrender.com',
+  'https://asha-infracore.vercel.app' // ✅ Add this line
 ];
+
 
 app.use(cors({
   origin: (origin, callback) => {
