@@ -1,22 +1,56 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
-
-const productRoutes = require('./routes/products');
-const attachmentRoutes = require('./routes/attachments'); // ✅ ADD THIS
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
-app.use('/api/products', productRoutes);
-app.use('/api/attachments', attachmentRoutes); // ✅ ADD THIS
+// ✅ Import Routes
+const productRoutes = require('./routes/products');
+const attachmentRoutes = require('./routes/attachments');
+const quotationRoutes = require('./routes/quotations');
+const quoteRoutes = require('./routes/quoteRoutes');
+const contactRoutes = require('./routes/contact');
+const { router: notificationRoutes, getSubscriptions } = require('./routes/notificationRoutes');
 
-app.get('/', (req, res) => {
-  res.send('Asha Infracore API Running');
+// ✅ Auth
+const authRoutes = require('./routes/authRoutes');
+const { protect } = require('./middleware/authMiddleware'); // FIXED: Destructure protect
+
+// ✅ Desktop Push Subscriptions
+const { setSubscriptions } = require('./controllers/sendMailController');
+const subscriptions = [];
+setSubscriptions(subscriptions);
+
+// ✅ Middleware
+app.use(cors({
+  origin: "http://localhost:5173", // frontend URL
+  credentials: true                // allow cookies
+}));
+app.use(express.json());
+app.use(cookieParser());
+
+// ✅ Route Registration
+app.use('/api/products', productRoutes);
+app.use('/api/attachments', attachmentRoutes);
+app.use('/api/quotations', quotationRoutes);
+app.use('/api/quote', quoteRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/auth', authRoutes); // auth routes
+
+// ✅ Example Protected Admin Route
+app.get('/api/admin/data', protect, (req, res) => {
+  res.json({ message: "✅ Protected admin route accessed", user: req.admin });
 });
 
+// ✅ Health Check
+app.get('/', (req, res) => {
+  res.send('✅ Asha Infracore Backend is Running');
+});
+
+// ✅ Start Server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server listening on http://localhost:${PORT}`);
 });
