@@ -230,13 +230,18 @@ const getAllProducts = async (req, res) => {
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (error) throw error;
+    if (error) {
+      console.error('🔥 Supabase fetch error:', error.message);
+      return res.status(500).json({ error: error.message });
+    }
+
     res.json(data);
   } catch (err) {
-    console.error('Get products error:', err);
+    console.error('💥 Unexpected error:', err.message);
     res.status(500).json({ error: 'Failed to fetch products' });
   }
 };
+
 
 // ✅ Get single product by ID
 const getProductById = async (req, res) => {
