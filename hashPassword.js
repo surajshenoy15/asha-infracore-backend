@@ -16,6 +16,10 @@ const admins = [
   {
     email: 'sushmithakshetty2005@gmail.com',
     password: 'sushmitha@123'
+  },
+  {
+    email: 'kkshetty@ashainfracore.com',
+    password: 'kkshetty@123'
   }
 ];
 

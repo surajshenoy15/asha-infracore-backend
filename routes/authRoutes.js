@@ -9,7 +9,7 @@ const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const allowedAdmins = ['surajshenoyp@gmail.com', 'sushmithakshetty2005@gmail.com'];
+const allowedAdmins = ['surajshenoyp@gmail.com', 'sushmithakshetty2005@gmail.com','kkshetty@ashainfracore.com'];
 
 // ✅ LOGIN
 router.post('/login', async (req, res) => {
