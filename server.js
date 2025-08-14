@@ -35,7 +35,8 @@ setSubscriptions(subscriptions);
 const allowedOrigins = [
   'http://localhost:5173',
   'https://asha-infracore-frontend.onrender.com',
-  'https://asha-infracore.vercel.app'
+  'https://asha-infracore.vercel.app',
+  'https://ashainfracore.com'
 ];
 
 app.use(cors({
