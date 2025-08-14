@@ -18,9 +18,9 @@ exports.setSubscriptions = (subs) => {
 
 // 🔸 Define branch-to-email mappings
 const branchEmailMap = {
-  BENGALURU: ['surajshenoy296@gmail.com', 'surajshenoyp@gmail.com'],
-  SHIVAMOGGA: ['sushmithakshetty2005@gmail.com', 'foodsaver.bnmit@gmail.com'],
-  MANGALURU: ['mang1@gmail.com', 'mang2@gmail.com'],
+  BENGALURU: ['kkshetty@ashainfracore.com'],
+  SHIVAMOGGA: ['kkshetty@ashainfracore.com'],
+  MANGALURU: ['kkshetty@ashainfracore.com'],
 };
 
 exports.sendContactMessage = async (req, res) => {
