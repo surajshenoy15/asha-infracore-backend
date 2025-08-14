@@ -36,7 +36,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'https://asha-infracore-frontend.onrender.com',
   'https://asha-infracore.vercel.app',
-  'https://ashainfracore.com'
+  'https://www.ashainfracore.com'
 ];
 
 app.use(cors({
