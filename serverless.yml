@@ -1,0 +1,24 @@
+service: asha-infracore-backend
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  stage: prod
+  memorySize: 512
+  timeout: 15
+  environment:
+    SUPABASE_URL: ${env:SUPABASE_URL}
+    SUPABASE_SERVICE_KEY: ${env:SUPABASE_SERVICE_KEY}
+    SUPABASE_BUCKET_NAME: ${env:SUPABASE_BUCKET_NAME}
+    JWT_SECRET: ${env:JWT_SECRET}
+    VAPID_PUBLIC_KEY: ${env:VAPID_PUBLIC_KEY}
+    VAPID_PRIVATE_KEY: ${env:VAPID_PRIVATE_KEY}
+
+functions:
+  api:
+    handler: lambda.handler
+    events:
+      - httpApi: "*"
