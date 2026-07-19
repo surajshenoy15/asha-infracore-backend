@@ -31,6 +31,7 @@ const allowedOrigins = [
   "https://asha-infracore.vercel.app",
   "https://www.ashainfracore.com",
   "https://ashainfracore.com",
+  "https://asha-infracore-iota.vercel.app"
 ];
 
 app.use(
